@@ -6,7 +6,7 @@
 /*   By: kde-oliv <kde-oliv@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/17 09:53:05 by kde-oliv          #+#    #+#             */
-/*   Updated: 2021/08/17 14:24:56 by kde-oliv         ###   ########.fr       */
+/*   Updated: 2021/08/17 14:41:18 by kde-oliv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,8 @@
 typedef struct s_game
 {
 	char		*fber;
+	int			height;
+	int			width;
 }			t_game;
 
 #endif

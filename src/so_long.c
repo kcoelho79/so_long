@@ -6,11 +6,25 @@
 /*   By: kde-oliv <kde-oliv@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/17 09:44:04 by kde-oliv          #+#    #+#             */
-/*   Updated: 2021/08/17 14:35:21 by kde-oliv         ###   ########.fr       */
+/*   Updated: 2021/08/17 14:58:34 by kde-oliv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h" 
+
+static void get_map_dimension(t_game *game)
+{
+	game->height = 0;
+	game->width = 0;
+	while (*game->fber != '\0')
+	{
+		if (*game->fber == '\n')
+			game->height++;
+		if (game->height == 0)
+			game->width++;
+		game->fber++;
+	}
+}
 
 static void	read_fber(int f, t_game *game)
 {
@@ -33,6 +47,11 @@ static void	read_fber(int f, t_game *game)
 	free(buff);
 }
 
+void	map_init(t_game *game)
+{
+	get_map_dimension(game);
+}
+
 int	main(int argc, char *argv[])
 {
 	int		f;
@@ -46,5 +65,6 @@ int	main(int argc, char *argv[])
 		perror("erro openning file");
 	read_fber(f, game);
 	printf("%s\n", game->fber);
-// 	map_init(f);
+	map_init(game);
+	printf("Dimension %iX%i\n", game->height, game->width);
 }
