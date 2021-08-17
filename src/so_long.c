@@ -6,34 +6,37 @@
 /*   By: kde-oliv <kde-oliv@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/17 09:44:04 by kde-oliv          #+#    #+#             */
-/*   Updated: 2021/08/17 16:44:26 by kde-oliv         ###   ########.fr       */
+/*   Updated: 2021/08/17 19:43:26 by kde-oliv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h" 
 
-static void get_map_dimension(t_game *game)
+static void	get_map_dimension(t_game *game)
 {
+	size_t	i;
+
+	i = 0;
 	game->height = 0;
 	game->width = 0;
-	while (*game->fber != '\0')
+	while (game->fber[i] != '\0')
 	{
-		if (*game->fber == '\n')
+		if (game->fber[i] == '\n')
 			game->height++;
 		if (game->height == 0)
 			game->width++;
-		game->fber++;
+		i++;
 	}
 }
 
 static void	read_fber(int f, t_game *game)
 {
-	char	*buff;
+	char	buff[1024 + 1];
 	int		b;
 	char	*swp;
 
-	buff = malloc(sizeof(char *) * 1);
-	b = read(f, buff, 1);
+//	buff = malloc(sizeof(char *) * 1);
+	b = read(f, buff, 1024);
 	game->fber = ft_calloc(1, 1);
 	while (b > 0)
 	{
@@ -43,7 +46,7 @@ static void	read_fber(int f, t_game *game)
 		game->fber = swp;
 		b = read(f, buff, 1);
 	}
-	free(buff);
+	//free(buff);
 }
 
 void	texture_load(t_game *game, t_img **img, char *path)
@@ -70,22 +73,20 @@ void	windows_init(t_game *game)
 
 void	map_init(t_game	*game)
 {
-	int	i;
-	int	j;
-	int	k;
+	size_t	i;
+	int		row;
+	int		col;
 
-	k = 0;
-	j = -1;
+	i = 0;
+	row = -1;
 	game->map = (int **)malloc(sizeof(int *) * game->height);
-	while (++j < game->height)
+	while (++row < game->height)
 	{
-		game->map[j] = (int *)malloc(sizeof(int) * game->width);
-		i = 0;
-		while (i < game->width)
-		{
-			game->map[j][i++] = game->fber[k++] - 48;
-		}
-		k++;
+		game->map[row] = (int *)malloc(sizeof(int) * game->width);
+		col = 0;
+		while (col < game->width)
+			game->map[row][col++] = game->fber[i++];
+		i++;
 	}
 }
 
@@ -100,7 +101,6 @@ void	game_init(t_game *game)
 	get_map_dimension(game);
 	map_init(game);
 	windows_init(game);
-	
 }
 
 int	main(int argc, char *argv[])
@@ -116,8 +116,7 @@ int	main(int argc, char *argv[])
 		perror("erro openning file");
 	read_fber(f, game);
 	close(f);
-	printf("%s\n", game->fber);
 	game_init(game);
-	//render(game)
-	mlx_loop(game->mlx);
+	printf("%s\n", game->fber);
+//	mlx_loop(game->mlx);
 }
