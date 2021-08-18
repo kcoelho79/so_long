@@ -7,7 +7,7 @@ INC			=	-I ./inc -I ./libft -I ./mlx
 LIB			=	-L ./libft -lft -L ./mlx -lmlx -lXext -lX11 -lm -lbsd
 OBJ			=	$(patsubst src%, obj%, $(SRC:.c=.o))
 
-SRC			=	src/so_long.c
+SRC			=	src/so_long.c src/mlx_utils.c
 
 all:		$(MLX) $(LFT) obj $(NAME)
 

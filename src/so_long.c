@@ -6,7 +6,7 @@
 /*   By: kde-oliv <kde-oliv@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/17 09:44:04 by kde-oliv          #+#    #+#             */
-/*   Updated: 2021/08/17 19:43:26 by kde-oliv         ###   ########.fr       */
+/*   Updated: 2021/08/17 22:36:38 by kde-oliv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,6 +103,56 @@ void	game_init(t_game *game)
 	windows_init(game);
 }
 
+static void	draw_sprite(t_game *root, t_img *img, int x, int y)
+{
+	unsigned int	color;
+	int				i;
+	int				j;
+
+	j = 0;
+	while (j < 40)
+	{
+		i = 0;
+		while (i < 40)
+		{
+			color = mlx_get_pixel(img, i, j);
+			if (color != mlx_rgb_to_int(0, 255, 255, 255))
+				mlx_draw_pixel(root->mlx_img, x + i, y + j, color);
+			i++;
+		}
+		j++;
+	}
+}
+
+static void	render(t_game *game)
+{
+	int				x;
+	int				y;
+	y = 0;
+	while (y < game->height)
+	{
+		x = 0;
+		while (x < game->width)
+		{
+			printf(">%c",game->map[y][x]);
+			if (game->map[y][x] == '1')
+			{
+				draw_sprite(game, game->sprite->wall, x * 40, y * 40);
+				printf("e wall\n");
+			}
+			else
+			{
+				draw_sprite(game, game->sprite->ground, x * 40, y * 40);
+				printf("e ground\n");
+			}
+			//draw_env(game, x, y);
+			x++;
+		}
+		y++;
+	}
+	mlx_put_image_to_window(game->mlx, game->mlx_win, game->mlx_img, 0, 0);
+}
+
 int	main(int argc, char *argv[])
 {
 	int		f;
@@ -117,6 +167,7 @@ int	main(int argc, char *argv[])
 	read_fber(f, game);
 	close(f);
 	game_init(game);
-	printf("%s\n", game->fber);
-//	mlx_loop(game->mlx);
+//	printf("%s\n", game->fber);
+	render(game);
+	mlx_loop(game->mlx);
 }

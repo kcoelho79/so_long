@@ -6,7 +6,7 @@
 /*   By: kde-oliv <kde-oliv@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/17 09:53:05 by kde-oliv          #+#    #+#             */
-/*   Updated: 2021/08/17 16:18:52 by kde-oliv         ###   ########.fr       */
+/*   Updated: 2021/08/17 22:17:22 by kde-oliv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,5 +41,9 @@ typedef struct s_game
 	t_img		*mlx_img;
 	t_sprite	*sprite;
 }			t_game;
+
+unsigned int	mlx_get_pixel(t_img *img, int x, int y);
+void			mlx_draw_pixel(t_img *mlx_img, int x, int y, int color);
+unsigned int	mlx_rgb_to_int(int o, int r, int g, int b);
 
 #endif
