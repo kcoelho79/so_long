@@ -6,7 +6,7 @@
 /*   By: kde-oliv <kde-oliv@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/17 09:53:05 by kde-oliv          #+#    #+#             */
-/*   Updated: 2021/08/17 22:17:22 by kde-oliv         ###   ########.fr       */
+/*   Updated: 2021/08/18 18:26:43 by kde-oliv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,12 @@
 # include "libft.h"
 # include <errno.h>
 # include <fcntl.h>
+
+typedef struct s_coord
+{
+	int		x;
+	int		y;
+}		t_coord;
 
 typedef struct s_sprite
 {
@@ -39,7 +45,17 @@ typedef struct s_game
 	void		*mlx;
 	void		*mlx_win;
 	t_img		*mlx_img;
+	t_coord		player;
+	int			count_player;
+	t_coord		exit;
+	int			count_exit;
+	t_coord		*coll;
+	int			count_coll;
 	t_sprite	*sprite;
+	int			player_up;
+	int			player_down;
+	int			player_left;
+	int			player_right;
 }			t_game;
 
 unsigned int	mlx_get_pixel(t_img *img, int x, int y);

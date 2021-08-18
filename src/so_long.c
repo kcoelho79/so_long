@@ -6,7 +6,7 @@
 /*   By: kde-oliv <kde-oliv@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/17 09:44:04 by kde-oliv          #+#    #+#             */
-/*   Updated: 2021/08/17 22:36:38 by kde-oliv         ###   ########.fr       */
+/*   Updated: 2021/08/18 18:41:27 by kde-oliv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,21 +71,54 @@ void	windows_init(t_game *game)
 	texture_load(game, &game->sprite->ground, "./img/sand.xpm");
 }
 
+static void	get_coord(t_game *game, int i, int *obj)
+{
+	if (game->fber[i] == 'P')
+	{
+		game->player.x = i % (game->width + 1);
+		game->player.y = i / (game->width + 1);
+		game->fber[i] = '0';
+	}
+	else if (game->fber[i] == 'E')
+	{
+		game->exit.x = i % (game->width + 1);
+		game->exit.y = i / (game->width + 1);
+		game->fber[i] = '0';
+	}
+	else if (game->fber[i] == 'C')
+	{
+		game->coll[*obj].x = i % (game->width + 1);
+		game->coll[*obj].y = i / (game->width + 1);
+		game->fber[i] = '0';
+		(*obj)++;
+	}
+}
+
 void	map_init(t_game	*game)
 {
 	size_t	i;
 	int		row;
 	int		col;
+	int		obj;
 
+	obj = 0;
 	i = 0;
 	row = -1;
+	game->count_coll = 1;
+	game->count_exit = 1;
+	game->count_player = 1;
 	game->map = (int **)malloc(sizeof(int *) * game->height);
+	game->coll = (t_coord *)malloc(sizeof(t_coord) * game->count_coll);
 	while (++row < game->height)
 	{
 		game->map[row] = (int *)malloc(sizeof(int) * game->width);
 		col = 0;
 		while (col < game->width)
+		{
 			game->map[row][col++] = game->fber[i++];
+			get_coord(game, i, &obj);
+		}
+		printf("\n");
 		i++;
 	}
 }
@@ -124,6 +157,20 @@ static void	draw_sprite(t_game *root, t_img *img, int x, int y)
 	}
 }
 
+static void	draw_env(t_game *game, int i, int j)
+{
+	int				k;
+
+	if (game->exit.x == i && game->exit.y == j)
+		draw_sprite(game, game->sprite->exit, i * 40, j * 40);
+	k = -1;
+	while (++k < game->count_coll)
+		if (game->coll[k].x == i && game->coll[k].y == j)
+			draw_sprite(game, game->sprite->coll, i * 40, j * 40);
+	if (game->player.x == i && game->player.y == j)
+		draw_sprite(game, game->sprite->player, i * 40, j * 40);
+}
+
 static void	render(t_game *game)
 {
 	int				x;
@@ -136,16 +183,10 @@ static void	render(t_game *game)
 		{
 			printf(">%c",game->map[y][x]);
 			if (game->map[y][x] == '1')
-			{
 				draw_sprite(game, game->sprite->wall, x * 40, y * 40);
-				printf("e wall\n");
-			}
 			else
-			{
 				draw_sprite(game, game->sprite->ground, x * 40, y * 40);
-				printf("e ground\n");
-			}
-			//draw_env(game, x, y);
+			draw_env(game, x, y);
 			x++;
 		}
 		y++;
