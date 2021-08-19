@@ -6,7 +6,7 @@
 /*   By: kde-oliv <kde-oliv@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/17 09:53:05 by kde-oliv          #+#    #+#             */
-/*   Updated: 2021/08/18 18:26:43 by kde-oliv         ###   ########.fr       */
+/*   Updated: 2021/08/19 00:13:54 by kde-oliv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,8 +58,15 @@ typedef struct s_game
 	int			player_right;
 }			t_game;
 
+void			render(t_game *game);
+
 unsigned int	mlx_get_pixel(t_img *img, int x, int y);
 void			mlx_draw_pixel(t_img *mlx_img, int x, int y, int color);
 unsigned int	mlx_rgb_to_int(int o, int r, int g, int b);
 
+int				key_press(int keycode, t_game *game);
+
+void			move_up(t_game *game, int x, int y);
+
+void			update(t_game *game);
 #endif

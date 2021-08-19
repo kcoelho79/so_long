@@ -6,7 +6,7 @@
 /*   By: kde-oliv <kde-oliv@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/17 09:44:04 by kde-oliv          #+#    #+#             */
-/*   Updated: 2021/08/18 18:41:27 by kde-oliv         ###   ########.fr       */
+/*   Updated: 2021/08/18 23:52:26 by kde-oliv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -171,17 +171,17 @@ static void	draw_env(t_game *game, int i, int j)
 		draw_sprite(game, game->sprite->player, i * 40, j * 40);
 }
 
-static void	render(t_game *game)
+void	render(t_game *game)
 {
 	int				x;
 	int				y;
+
 	y = 0;
 	while (y < game->height)
 	{
 		x = 0;
 		while (x < game->width)
 		{
-			printf(">%c",game->map[y][x]);
 			if (game->map[y][x] == '1')
 				draw_sprite(game, game->sprite->wall, x * 40, y * 40);
 			else
@@ -208,7 +208,8 @@ int	main(int argc, char *argv[])
 	read_fber(f, game);
 	close(f);
 	game_init(game);
-//	printf("%s\n", game->fber);
 	render(game);
+	mlx_hook(game->mlx_win, 2, 1L << 0, key_press, game);
 	mlx_loop(game->mlx);
+	return (0);
 }
