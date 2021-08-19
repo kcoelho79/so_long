@@ -6,7 +6,7 @@
 /*   By: kde-oliv <kde-oliv@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/17 09:53:05 by kde-oliv          #+#    #+#             */
-/*   Updated: 2021/08/19 00:13:54 by kde-oliv         ###   ########.fr       */
+/*   Updated: 2021/08/19 15:38:58 by kde-oliv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,8 +65,13 @@ void			mlx_draw_pixel(t_img *mlx_img, int x, int y, int color);
 unsigned int	mlx_rgb_to_int(int o, int r, int g, int b);
 
 int				key_press(int keycode, t_game *game);
+int				key_release(int keycode, t_game *game);
 
 void			move_up(t_game *game, int x, int y);
+void			move_down(t_game *game, int x, int y);
+void			move_left(t_game *game, int x, int y);
+void			move_right(t_game *game, int x, int y);
+
 
 void			update(t_game *game);
 #endif

@@ -6,7 +6,7 @@
 /*   By: kde-oliv <kde-oliv@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/17 09:44:04 by kde-oliv          #+#    #+#             */
-/*   Updated: 2021/08/18 23:52:26 by kde-oliv         ###   ########.fr       */
+/*   Updated: 2021/08/19 13:07:00 by kde-oliv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,10 +115,9 @@ void	map_init(t_game	*game)
 		col = 0;
 		while (col < game->width)
 		{
-			game->map[row][col++] = game->fber[i++];
 			get_coord(game, i, &obj);
+			game->map[row][col++] = game->fber[i++];
 		}
-		printf("\n");
 		i++;
 	}
 }
@@ -131,6 +130,10 @@ void	game_init(t_game *game)
 	game->sprite->coll = 0;
 	game->sprite->wall = 0;
 	game->sprite->ground = 0;
+	game->player_up = 0;
+	game->player_down = 0;
+	game->player_left = 0;
+	game->player_right = 0;
 	get_map_dimension(game);
 	map_init(game);
 	windows_init(game);
@@ -210,6 +213,7 @@ int	main(int argc, char *argv[])
 	game_init(game);
 	render(game);
 	mlx_hook(game->mlx_win, 2, 1L << 0, key_press, game);
+	mlx_hook(game->mlx_win, 3, 1L << 0, key_release, game);
 	mlx_loop(game->mlx);
 	return (0);
 }
