@@ -6,7 +6,7 @@
 /*   By: kde-oliv <kde-oliv@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/17 09:44:04 by kde-oliv          #+#    #+#             */
-/*   Updated: 2021/08/19 13:07:00 by kde-oliv         ###   ########.fr       */
+/*   Updated: 2021/08/19 18:27:52 by kde-oliv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,8 +62,10 @@ void	texture_load(t_game *game, t_img **img, char *path)
 void	windows_init(t_game *game)
 {
 	game->mlx = mlx_init();
-	game->mlx_win = mlx_new_window(game->mlx, game->width * 40, game->height * 40, "So_long");
-	game->mlx_img = mlx_new_image(game->mlx, game->width * 40, game->height *40);
+	game->mlx_win = mlx_new_window(game->mlx, game->width * 40, \
+		game->height * 40, "So_long");
+	game->mlx_img = mlx_new_image(game->mlx, game->width * 40, \
+		game->height *40);
 	texture_load(game, &game->sprite->player, "./img/player.xpm");
 	texture_load(game, &game->sprite->exit, "./img/helicopter.xpm");
 	texture_load(game, &game->sprite->coll, "./img/gas.xpm");
@@ -116,7 +118,7 @@ void	map_init(t_game	*game)
 		while (col < game->width)
 		{
 			get_coord(game, i, &obj);
-			game->map[row][col++] = game->fber[i++];
+			game->map[row][col++] = game->fber[i++] - 48;
 		}
 		i++;
 	}
@@ -134,6 +136,7 @@ void	game_init(t_game *game)
 	game->player_down = 0;
 	game->player_left = 0;
 	game->player_right = 0;
+	game->map = 0;
 	get_map_dimension(game);
 	map_init(game);
 	windows_init(game);
@@ -185,7 +188,7 @@ void	render(t_game *game)
 		x = 0;
 		while (x < game->width)
 		{
-			if (game->map[y][x] == '1')
+			if (game->map[y][x] == 1)
 				draw_sprite(game, game->sprite->wall, x * 40, y * 40);
 			else
 				draw_sprite(game, game->sprite->ground, x * 40, y * 40);
@@ -213,7 +216,7 @@ int	main(int argc, char *argv[])
 	game_init(game);
 	render(game);
 	mlx_hook(game->mlx_win, 2, 1L << 0, key_press, game);
-	mlx_hook(game->mlx_win, 3, 1L << 0, key_release, game);
+	mlx_hook(game->mlx_win, 3, 1L << 1, key_release, game);
 	mlx_loop(game->mlx);
 	return (0);
 }
