@@ -6,7 +6,7 @@
 /*   By: kde-oliv <kde-oliv@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/17 09:53:05 by kde-oliv          #+#    #+#             */
-/*   Updated: 2021/08/19 15:38:58 by kde-oliv         ###   ########.fr       */
+/*   Updated: 2021/08/19 19:48:12 by kde-oliv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 # include <unistd.h>
 # include <stdio.h>
+# include <stdlib.h>
 # include <mlx.h>
 # include <mlx_int.h>
 # include "libft.h"
@@ -56,9 +57,12 @@ typedef struct s_game
 	int			player_down;
 	int			player_left;
 	int			player_right;
+	int			player_coll;
+	int			move_count;
 }			t_game;
 
 void			render(t_game *game);
+void			map_validate(t_game *game);
 
 unsigned int	mlx_get_pixel(t_img *img, int x, int y);
 void			mlx_draw_pixel(t_img *mlx_img, int x, int y, int color);

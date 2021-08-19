@@ -6,7 +6,7 @@
 /*   By: kde-oliv <kde-oliv@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/17 09:44:04 by kde-oliv          #+#    #+#             */
-/*   Updated: 2021/08/19 18:27:52 by kde-oliv         ###   ########.fr       */
+/*   Updated: 2021/08/19 19:50:04 by kde-oliv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,9 +106,7 @@ void	map_init(t_game	*game)
 	obj = 0;
 	i = 0;
 	row = -1;
-	game->count_coll = 1;
-	game->count_exit = 1;
-	game->count_player = 1;
+	map_validate(game);
 	game->map = (int **)malloc(sizeof(int *) * game->height);
 	game->coll = (t_coord *)malloc(sizeof(t_coord) * game->count_coll);
 	while (++row < game->height)
@@ -136,7 +134,11 @@ void	game_init(t_game *game)
 	game->player_down = 0;
 	game->player_left = 0;
 	game->player_right = 0;
+	game->player_coll = 0;
 	game->map = 0;
+	game->count_coll = 0;
+	game->count_exit = 0;
+	game->count_player = 0;
 	get_map_dimension(game);
 	map_init(game);
 	windows_init(game);

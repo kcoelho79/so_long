@@ -6,7 +6,7 @@
 /*   By: kde-oliv <kde-oliv@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/18 18:44:36 by kde-oliv          #+#    #+#             */
-/*   Updated: 2021/08/19 17:53:54 by kde-oliv         ###   ########.fr       */
+/*   Updated: 2021/08/19 19:26:49 by kde-oliv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 
 int	key_press(int keycode, t_game *game)
 {	
-	write(1, &keycode, 1);
 	if (keycode == 65307)
-		printf("SAI MANE");
+		exit(0);
+	// criar exit, destroy  os processos
 	else if (keycode == 'w')
 		game->player_up = 1;
 	else if (keycode == 's')
@@ -47,6 +47,23 @@ int	key_release(int keycode, t_game *game)
 	return (0);
 }
 
+static void	iscollectable(t_game *game)
+{
+	int		i;
+
+	i = 0;
+	while (i < game->count_coll)
+	{
+		if (game->coll[i].x == game->player.x
+			&& game->coll[i].y == game->player.y)
+		{
+			game->coll[i].x = -1;
+			game->coll[i].y = -1;
+			game->player_coll++;
+		}
+		i++;
+	}
+}
 void	update(t_game *game)
 {
 	int		x;
@@ -62,5 +79,12 @@ void	update(t_game *game)
 		move_left(game, x, y);
 	else if (game->player_right == 1)
 		move_right(game, x, y);
+	if (game->player.x == game->exit.x
+		&& game->player.y == game->exit.y)
+		if (game->count_coll == game->player_coll)
+			exit(0);
+					// criar exit aqui
+
+	iscollectable(game);
 	render(game);
 }
