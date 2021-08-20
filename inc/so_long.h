@@ -6,7 +6,7 @@
 /*   By: kde-oliv <kde-oliv@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/17 09:53:05 by kde-oliv          #+#    #+#             */
-/*   Updated: 2021/08/19 19:48:12 by kde-oliv         ###   ########.fr       */
+/*   Updated: 2021/08/20 09:54:52 by kde-oliv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,8 +61,12 @@ typedef struct s_game
 	int			move_count;
 }			t_game;
 
+int				start(t_game *game);
+void			map_init(t_game	*game);
+
 void			render(t_game *game);
 void			map_validate(t_game *game);
+void			windows_init(t_game *game);
 
 unsigned int	mlx_get_pixel(t_img *img, int x, int y);
 void			mlx_draw_pixel(t_img *mlx_img, int x, int y, int color);
@@ -75,7 +79,6 @@ void			move_up(t_game *game, int x, int y);
 void			move_down(t_game *game, int x, int y);
 void			move_left(t_game *game, int x, int y);
 void			move_right(t_game *game, int x, int y);
-
 
 void			update(t_game *game);
 #endif
