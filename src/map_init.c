@@ -6,7 +6,7 @@
 /*   By: kde-oliv <kde-oliv@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/20 09:39:15 by kde-oliv          #+#    #+#             */
-/*   Updated: 2021/08/20 09:53:08 by kde-oliv         ###   ########.fr       */
+/*   Updated: 2021/08/20 19:40:01 by kde-oliv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ static void	get_coord(t_game *game, int i, int *obj)
 	}
 }
 
-void	map_init(t_game	*game)
+static void	create_matrix_map(t_game *game)
 {
 	size_t	i;
 	int		row;
@@ -62,10 +62,10 @@ void	map_init(t_game	*game)
 	obj = 0;
 	i = 0;
 	row = -1;
-	get_map_dimension(game);
-	map_validate(game);
 	game->map = (int **)malloc(sizeof(int *) * game->height);
 	game->coll = (t_coord *)malloc(sizeof(t_coord) * game->count_coll);
+	if (!game->map || !game->coll)
+		error(game, "map_init error malloc", errno);
 	while (++row < game->height)
 	{
 		game->map[row] = (int *)malloc(sizeof(int) * game->width);
@@ -77,4 +77,12 @@ void	map_init(t_game	*game)
 		}
 		i++;
 	}
+	free(game->fber);
+}	
+
+void	map_init(t_game	*game)
+{
+	 get_map_dimension(game);
+	 map_validate(game);
+	 create_matrix_map(game);
 }

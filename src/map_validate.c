@@ -6,7 +6,7 @@
 /*   By: kde-oliv <kde-oliv@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/19 19:43:19 by kde-oliv          #+#    #+#             */
-/*   Updated: 2021/08/19 19:53:52 by kde-oliv         ###   ########.fr       */
+/*   Updated: 2021/08/20 19:33:15 by kde-oliv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,10 +35,21 @@ static void	isvalid(t_game *game, int i)
 	else
 	{
 		free(game->fber);
-		printf("map content is invalid\n");
-		exit(0);
-		// root_destroy(game, "map content is invalid", 0);
+		error(game, "map content is invalid\n", 0);
 	}
+}
+
+static void	isrectangular(t_game *game)
+{
+	int		res;
+	int		len;
+
+	len = ft_strlen(game->fber) - game->height;
+	res = (game->width * game->height);
+	if (res != len)
+		error(game, "map matrix format is invalid \n", 1);
+	if (game->height >= game->width)
+		error(game, "map isn't rectangular \n", 1);
 }
 
 void	map_validate(t_game *game)
@@ -46,6 +57,7 @@ void	map_validate(t_game *game)
 	int				i;
 
 	i = -1;
+	isrectangular(game);
 	while (game->fber[++i] != 0)
 	{
 		if (game->fber[i] == '\n')
@@ -55,21 +67,16 @@ void	map_validate(t_game *game)
 			if (game->fber[i] != '1')
 			{
 				free(game->fber);
-				printf("map isn't surrounded by walls\n");
-				exit(0);
-				// root_destroy(game, "map isn't surrounded by walls", 0);
+				error(game, "map isn't surrounded by walls\n", 1);
 			}
 		}
 		else
 			isvalid(game, i);
 	}
-	if (game->count_player != 1
-		|| game->count_exit != 1
+	if (game->count_player != 1 || game->count_exit != 1
 		|| game->count_coll < 1)
 	{
 		free(game->fber);
-		printf("map configuration is invalid\n");
-		exit(0);
-		// root_destroy(game, "map configuration is invalid", 0);
+		error(game, "map configuration is invalid\n", 1);
 	}
 }

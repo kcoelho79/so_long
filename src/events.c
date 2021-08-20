@@ -6,7 +6,7 @@
 /*   By: kde-oliv <kde-oliv@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/18 18:44:36 by kde-oliv          #+#    #+#             */
-/*   Updated: 2021/08/19 19:26:49 by kde-oliv         ###   ########.fr       */
+/*   Updated: 2021/08/20 19:48:05 by kde-oliv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,7 @@
 int	key_press(int keycode, t_game *game)
 {	
 	if (keycode == 65307)
-		exit(0);
-	// criar exit, destroy  os processos
+		game_destroy(game);
 	else if (keycode == 'w')
 		game->player_up = 1;
 	else if (keycode == 's')
@@ -64,6 +63,7 @@ static void	iscollectable(t_game *game)
 		i++;
 	}
 }
+
 void	update(t_game *game)
 {
 	int		x;

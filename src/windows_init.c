@@ -6,7 +6,7 @@
 /*   By: kde-oliv <kde-oliv@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/20 09:52:28 by kde-oliv          #+#    #+#             */
-/*   Updated: 2021/08/20 09:54:17 by kde-oliv         ###   ########.fr       */
+/*   Updated: 2021/08/20 18:37:19 by kde-oliv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,10 +25,16 @@ static void	texture_load(t_game *game, t_img **img, char *path)
 void	windows_init(t_game *game)
 {
 	game->mlx = mlx_init();
+	if (!game->mlx)
+		error(game, "error can not load mlx", 0);
 	game->mlx_win = mlx_new_window(game->mlx, game->width * 40, \
 		game->height * 40, "So_long");
+	if (!game->mlx_win)
+		error(game, "error can not create windows", 0);
 	game->mlx_img = mlx_new_image(game->mlx, game->width * 40, \
 		game->height *40);
+	if (!game->mlx_img)
+		error(game, "error can not create images", 0);	
 	texture_load(game, &game->sprite->player, "./img/player.xpm");
 	texture_load(game, &game->sprite->exit, "./img/helicopter.xpm");
 	texture_load(game, &game->sprite->coll, "./img/gas.xpm");

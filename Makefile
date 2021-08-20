@@ -8,8 +8,8 @@ LIB			=	-L ./libft -lft -L ./mlx -lmlx -lXext -lX11 -lm -lbsd
 OBJ			=	$(patsubst src%, obj%, $(SRC:.c=.o))
 
 SRC			=	src/so_long.c src/mlx_utils.c src/events.c src/move_player.c \
-				src/map_validate.c src/map_init.c \
-				src/game_init.c src/game_render.c src/windows_init.c
+				src/map_validate.c src/map_init.c src/checks_error.c \
+				src/start.c src/game_render.c src/windows_init.c src/game_destroy.c
 				
 
 all:		$(MLX) $(LFT) obj $(NAME)
