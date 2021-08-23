@@ -6,7 +6,7 @@
 /*   By: kde-oliv <kde-oliv@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/18 18:44:36 by kde-oliv          #+#    #+#             */
-/*   Updated: 2021/08/20 19:48:05 by kde-oliv         ###   ########.fr       */
+/*   Updated: 2021/08/22 22:59:53 by kde-oliv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,14 @@ static void	iscollectable(t_game *game)
 		}
 		i++;
 	}
+}
+
+int	destroy_hook(int keycode, t_game *game)
+{
+	(void)keycode;
+	(void)game;
+	game_destroy(game);
+	return (0);
 }
 
 void	update(t_game *game)
