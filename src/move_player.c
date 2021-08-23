@@ -6,7 +6,7 @@
 /*   By: kde-oliv <kde-oliv@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/18 23:09:08 by kde-oliv          #+#    #+#             */
-/*   Updated: 2021/08/19 19:17:50 by kde-oliv         ###   ########.fr       */
+/*   Updated: 2021/08/23 11:32:44 by kde-oliv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ void	move_left(t_game*game, int x, int y)
 	if (game->map[y][x - 1] == 0)
 	{
 		game->player.x -= 1;
-		game->move_count++;	
+		game->move_count++;
 		printf("%i\n", game->move_count);
 	}
 }

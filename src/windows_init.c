@@ -6,7 +6,7 @@
 /*   By: kde-oliv <kde-oliv@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/20 09:52:28 by kde-oliv          #+#    #+#             */
-/*   Updated: 2021/08/20 18:37:19 by kde-oliv         ###   ########.fr       */
+/*   Updated: 2021/08/23 11:33:08 by kde-oliv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ void	windows_init(t_game *game)
 	game->mlx_img = mlx_new_image(game->mlx, game->width * 40, \
 		game->height *40);
 	if (!game->mlx_img)
-		error(game, "error can not create images", 0);	
+		error(game, "error can not create images", 0);
 	texture_load(game, &game->sprite->player, "./img/player.xpm");
 	texture_load(game, &game->sprite->exit, "./img/helicopter.xpm");
 	texture_load(game, &game->sprite->coll, "./img/gas.xpm");

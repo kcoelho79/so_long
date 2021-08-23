@@ -6,7 +6,7 @@
 /*   By: kde-oliv <kde-oliv@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/17 09:53:05 by kde-oliv          #+#    #+#             */
-/*   Updated: 2021/08/23 10:21:35 by kde-oliv         ###   ########.fr       */
+/*   Updated: 2021/08/23 11:21:21 by kde-oliv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,8 +86,9 @@ void			move_left(t_game *game, int x, int y);
 void			move_right(t_game *game, int x, int y);
 
 void			update(t_game *game);
-void			game_destroy(t_game *game);
 void			end_game(t_game *game);
+void			end_program(t_game *game);
+void			game_destroy(t_game *game);
 
 void			error(t_game *game, char *error, int numerror);
 

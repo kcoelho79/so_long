@@ -6,7 +6,7 @@
 /*   By: kde-oliv <kde-oliv@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/19 19:43:19 by kde-oliv          #+#    #+#             */
-/*   Updated: 2021/08/20 19:33:15 by kde-oliv         ###   ########.fr       */
+/*   Updated: 2021/08/23 11:28:10 by kde-oliv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,10 +33,7 @@ static void	isvalid(t_game *game, int i)
 	else if (game->fber[i] == '1' || game->fber[i] == '0')
 		return ;
 	else
-	{
-		free(game->fber);
 		error(game, "map content is invalid\n", 0);
-	}
 }
 
 static void	isrectangular(t_game *game)
@@ -65,18 +62,12 @@ void	map_validate(t_game *game)
 		if (isborder(game, i))
 		{
 			if (game->fber[i] != '1')
-			{
-				free(game->fber);
 				error(game, "map isn't surrounded by walls\n", 1);
-			}
 		}
 		else
 			isvalid(game, i);
 	}
 	if (game->count_player != 1 || game->count_exit != 1
 		|| game->count_coll < 1)
-	{
-		free(game->fber);
 		error(game, "map configuration is invalid\n", 1);
-	}
 }

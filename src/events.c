@@ -6,7 +6,7 @@
 /*   By: kde-oliv <kde-oliv@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/18 18:44:36 by kde-oliv          #+#    #+#             */
-/*   Updated: 2021/08/23 11:02:54 by kde-oliv         ###   ########.fr       */
+/*   Updated: 2021/08/23 11:10:08 by kde-oliv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 int	key_press(int keycode, t_game *game)
 {	
 	if (keycode == 65307)
-		game_destroy(game);
+		end_program(game);
 	else if (keycode == 'w')
 		game->player_up = 1;
 	else if (keycode == 's')

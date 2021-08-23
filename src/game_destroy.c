@@ -6,7 +6,7 @@
 /*   By: kde-oliv <kde-oliv@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/20 16:41:51 by kde-oliv          #+#    #+#             */
-/*   Updated: 2021/08/23 10:55:39 by kde-oliv         ###   ########.fr       */
+/*   Updated: 2021/08/23 11:22:02 by kde-oliv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,17 +25,22 @@ static void	free_struct(t_game *game)
 	free(game);
 }
 
-void	game_destroy(t_game *game)
-{
-	free_struct(game);
-	printf("END PROGRAM\n");
-	exit(0);
-}
-
 void	end_game(t_game *game)
 {
 	free_struct(game);
 	printf("GAME END\n");
 	printf("You WIN !!!\n");
 	exit(0);
+}
+
+void	end_program(t_game *game)
+{
+	printf("END PROGRAM");
+	free_struct(game);
+	exit(0);
+}
+
+void	game_destroy(t_game *game)
+{
+	free_struct(game);
 }
