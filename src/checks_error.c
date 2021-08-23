@@ -6,7 +6,7 @@
 /*   By: kde-oliv <kde-oliv@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/20 11:06:06 by kde-oliv          #+#    #+#             */
-/*   Updated: 2021/08/20 18:46:25 by kde-oliv         ###   ########.fr       */
+/*   Updated: 2021/08/23 10:53:36 by kde-oliv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,5 +46,5 @@ void	error(t_game *game, char *msgerror, int numerror)
 {
 	game_destroy(game);
 	printf("\nerror: %s%s\n", msgerror, strerror(numerror));
-	exit(1);
+	exit(0);
 }

@@ -6,7 +6,7 @@
 /*   By: kde-oliv <kde-oliv@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/20 09:31:48 by kde-oliv          #+#    #+#             */
-/*   Updated: 2021/08/20 18:36:46 by kde-oliv         ###   ########.fr       */
+/*   Updated: 2021/08/23 10:28:10 by kde-oliv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,5 +65,5 @@ int	start(t_game *game, char *fileber)
 	map_init(game);
 	windows_init(game);
 	render(game);
-	return (0);
+	return (1);
 }
