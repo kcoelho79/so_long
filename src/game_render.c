@@ -6,7 +6,7 @@
 /*   By: kde-oliv <kde-oliv@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/20 09:57:26 by kde-oliv          #+#    #+#             */
-/*   Updated: 2021/08/23 19:43:47 by kde-oliv         ###   ########.fr       */
+/*   Updated: 2021/08/20 09:58:12 by kde-oliv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,9 +25,8 @@ static void	draw_sprite(t_game *root, t_img *img, int x, int y)
 		while (i < 40)
 		{
 			color = mlx_get_pixel(img, i, j);
-			
-			//if (color != mlx_rgb_to_int(0, 255, 255, 255))
-			mlx_draw_pixel(root->mlx_img, x + i, y + j, color);
+			if (color != mlx_rgb_to_int(0, 255, 255, 255))
+				mlx_draw_pixel(root->mlx_img, x + i, y + j, color);
 			i++;
 		}
 		j++;
@@ -70,4 +69,3 @@ void	render(t_game *game)
 	}
 	mlx_put_image_to_window(game->mlx, game->mlx_win, game->mlx_img, 0, 0);
 }
-

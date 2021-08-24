@@ -6,15 +6,11 @@
 /*   By: kde-oliv <kde-oliv@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/18 23:09:08 by kde-oliv          #+#    #+#             */
-/*   Updated: 2021/08/23 18:19:49 by kde-oliv         ###   ########.fr       */
+/*   Updated: 2021/08/23 11:32:44 by kde-oliv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
-012
-112
-2P2
-
 
 void	move_up(t_game *game, int x, int y)
 {
