@@ -32,7 +32,7 @@ void	windows_init(t_game *game)
 	if (!game->mlx_win)
 		error(game, "error can not create windows", 0);
 	game->mlx_img = mlx_new_image(game->mlx, game->width * 40, \
-		game->height *40);
+		game->height * 40);
 	if (!game->mlx_img)
 		error(game, "error can not create images", 0);
 	texture_load(game, &game->sprite->player, "./img/player.xpm");

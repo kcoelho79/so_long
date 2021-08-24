@@ -16,7 +16,7 @@ void	validate_fd(int fd)
 {
 	if (fd < 0)
 	{
-		perror("erro openning file");
+		perror("Error\n openning file");
 		exit(1);
 	}
 }
@@ -28,7 +28,7 @@ void	validate_isber(char *file)
 	len = ft_strlen(file);
 	if (ft_strncmp(file + len - 4, ".ber", len) != 0)
 	{
-		printf("is not format *.ber\n");
+		printf("Error\nis not format *.ber");
 		exit(1);
 	}
 }
@@ -37,7 +37,7 @@ void	validate_args(int argc)
 {
 	if (argc != 2)
 	{
-		printf("error: missed arguments \n");
+		printf("Error\n: missed arguments");
 		exit (1);
 	}
 }
@@ -45,6 +45,6 @@ void	validate_args(int argc)
 void	error(t_game *game, char *msgerror, int numerror)
 {
 	game_destroy(game);
-	printf("\nerror: %s%s\n", msgerror, strerror(numerror));
+	printf("Error\n %s %s", msgerror, strerror(numerror));
 	exit(0);
 }
