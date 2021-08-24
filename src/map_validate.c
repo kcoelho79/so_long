@@ -6,7 +6,7 @@
 /*   By: kde-oliv <kde-oliv@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/19 19:43:19 by kde-oliv          #+#    #+#             */
-/*   Updated: 2021/08/23 11:28:10 by kde-oliv         ###   ########.fr       */
+/*   Updated: 2021/08/24 18:34:28 by kde-oliv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,13 @@
 
 static int	isborder(t_game *game, int i)
 {
-	if (i < game->width
-		|| i > (game->width + 1) * (game->height - 1)
+	// verifica se tem borda na 1 linha
+	if (i < game->width 
+	// verifica se tem borda na ultima linha
+		|| i > (game->width + 1) * (game->height - 1) // 
+		// verifica se e fim de linha
 		|| i % (game->width + 1) == 0
+		// verifica se ultimo caracter e borda
 		|| i % (game->width + 1) == game->width - 1)
 		return (1);
 	return (0);
@@ -41,8 +45,10 @@ static void	isrectangular(t_game *game)
 	int		res;
 	int		len;
 
+	// total de elementos tiles, desctando o total de /n = ao height
 	len = ft_strlen(game->fber) - game->height;
 	res = (game->width * game->height);
+	// verificar a soma de elementos tem o mesmo tamanho da x*y
 	if (res != len)
 		error(game, "map matrix format is invalid \n", 1);
 	if (game->height >= game->width)

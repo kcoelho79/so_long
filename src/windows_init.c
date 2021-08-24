@@ -6,7 +6,7 @@
 /*   By: kde-oliv <kde-oliv@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/20 09:52:28 by kde-oliv          #+#    #+#             */
-/*   Updated: 2021/08/23 11:33:08 by kde-oliv         ###   ########.fr       */
+/*   Updated: 2021/08/24 19:03:36 by kde-oliv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,11 @@ static void	texture_load(t_game *game, t_img **img, char *path)
 {
 	int	width;
 	int	height;
+
+	/* mlx_xpm recebe uma imagem xpm, faz parsing da imagem
+	 * e pega endereco, width, height, bpp size_line da imagem
+	 * essas info, depois serão utilizada para desenhar a img na tela
+	*/
 
 	*img = mlx_xpm_file_to_image(game->mlx, path, &width, &height);
 	(*img)->width = width;

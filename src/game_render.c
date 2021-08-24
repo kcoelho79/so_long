@@ -6,7 +6,7 @@
 /*   By: kde-oliv <kde-oliv@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/20 09:57:26 by kde-oliv          #+#    #+#             */
-/*   Updated: 2021/08/20 09:58:12 by kde-oliv         ###   ########.fr       */
+/*   Updated: 2021/08/24 18:37:19 by kde-oliv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,12 @@ static void	draw_sprite(t_game *root, t_img *img, int x, int y)
 		i = 0;
 		while (i < 40)
 		{
+		// color = endereço localizado a cor do pixel
 			color = mlx_get_pixel(img, i, j);
+			/* se o pixel nao for branco e entao desenha o pixel
+			 usado para deixar o pixel transparente
+			 0, 255,255,255 = sem transparencia, cor Branco
+			*/
 			if (color != mlx_rgb_to_int(0, 255, 255, 255))
 				mlx_draw_pixel(root->mlx_img, x + i, y + j, color);
 			i++;
