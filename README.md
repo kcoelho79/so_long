@@ -70,13 +70,14 @@ so_long > executável, gerado pelo make
 ## Como jogar
 
 objetivo do jogar, é coletar todos os galões de combustivel, e depois pegar o helicoptero.
+ ```
+  make
+ ./so_long maps/map.ber
  
- `make`
- `./so_long maps/map.ber`
-
-W = move o jogador para cima
-S = move o jogador para baixo
-A = move o jogador para esquerda
-D = move o jogador para direita
-ESC = sai do jogo
+```
+- W = move o jogador para cima
+- S = move o jogador para baixo
+- A = move o jogador para esquerda
+- D = move o jogador para direita
+- ESC = sai do jogo
 
